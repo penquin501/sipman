@@ -1,0 +1,15 @@
+{# templates/bundles/SyliusAdminBundle/Sipman/index.html.twig #}
+{% extends '@SyliusAdmin/layout.html.twig' %}
+
+{% block title %}Sipman Product{% endblock %}
+
+{% block content %}
+<div class="ui segment">
+    <h1>Upload Product CSV</h1>
+    <p>Please select a CSV file to upload (Maximum size: 2MB).</p>
+    {{ form_start(form) }}
+        {{ form_row(form.csv_file) }}
+        <button type="submit" class="ui button primary">Upload</button>
+    {{ form_end(form) }}
+</div>
+{% endblock %}

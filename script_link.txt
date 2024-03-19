@@ -1,0 +1,4 @@
+php bin/console lexik:jwt:generate-keypair
+
+GET http://localhost:8000/admin/sipman/sync-wine
+GET http://localhost:8000/admin/taxon/create

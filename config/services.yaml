@@ -3,6 +3,7 @@
 parameters:
     locale: en_US
     csv_directory: '%kernel.project_dir%/public/uploads/csv'
+    image_directory: '%kernel.project_dir%/public/media/image/wine'
 
 services:
     # Default configuration for services in *this* file
@@ -62,3 +63,7 @@ services:
             $channelRepository: '@sylius.repository.channel'
             $entityManager: '@doctrine.orm.entity_manager'
             $channelPricingFactory: '@sylius.factory.channel_pricing'
+    
+    App\Command\SyncProductCommand:
+        arguments:
+            $imageDirectory: '%image_directory%'

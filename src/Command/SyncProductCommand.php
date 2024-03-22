@@ -91,7 +91,7 @@ class SyncProductCommand extends Command
         $listWine = $this->fetchWineData();
 
         foreach ($listWine as $wine) {
-            $output->writeln('start synce product...'.$wine['Name']);
+            $output->writeln('start sync product...'.$wine['Name']);
             $this->syncProductToSylius($wine);
         }
 

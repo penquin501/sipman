@@ -277,18 +277,11 @@ class SyncProductController extends AbstractController
             // Log the error or handle it accordingly
             return $this->json(['error' => 'Failed to update taxons: ' . $e->getMessage()]);
         }
-        // $this->entityManager->flush();
-        // $this->entityManager->clear();
         
         return $this->json(['message' => 'completed update taxon in product']);
     }
 
     private function getWineByProductCode($productCode) {
-        // $sql = "SELECT * FROM wine WHERE ID='".$productCode."'";
-        // $stmt = $this->connection->executeQuery($sql);
-
-        // // Fetch all rows
-        // return $stmt->fetchAllAssociative();
         $sql = "SELECT * FROM wine WHERE ID = ?";
         $stmt = $this->connection->executeQuery($sql, [$productCode]);
 

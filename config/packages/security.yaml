@@ -114,13 +114,13 @@ security:
 
         - { path: "%sylius.security.admin_regex%/forgotten-password", role: PUBLIC_ACCESS }
 
-        # - { path: "%sylius.security.admin_regex%/login", role: PUBLIC_ACCESS } #debug admin
+        - { path: "%sylius.security.admin_regex%/login", role: PUBLIC_ACCESS } #debug admin
         - { path: "%sylius.security.shop_regex%/login", role: PUBLIC_ACCESS }
 
         - { path: "%sylius.security.shop_regex%/register", role: PUBLIC_ACCESS }
         - { path: "%sylius.security.shop_regex%/verify", role: PUBLIC_ACCESS }
 
-        # - { path: "%sylius.security.admin_regex%", role: ROLE_ADMINISTRATION_ACCESS } #debug admin
+        - { path: "%sylius.security.admin_regex%", role: ROLE_ADMINISTRATION_ACCESS } #debug admin
         - { path: "%sylius.security.shop_regex%/account", role: ROLE_USER }
 
         - { path: "%sylius.security.new_api_admin_route%/reset-password-requests", role: PUBLIC_ACCESS }

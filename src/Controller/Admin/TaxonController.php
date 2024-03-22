@@ -102,7 +102,7 @@ class TaxonController extends AbstractController
         $taxonomies = [
             'Sipman' => $allProducts
         ];
-        return $this->json($taxonomies);
+        // return $this->json($taxonomies);
 
         $rootTaxon = $this->createOrUpdateTaxon('Sipman', null, 'sipman');
 

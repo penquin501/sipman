@@ -22,7 +22,6 @@ use Sylius\Component\Core\Model\ChannelPricingInterface;
 use Sylius\Component\Taxonomy\Repository\TaxonRepositoryInterface;
 use Sylius\Component\Core\Model\ProductImageInterface;
 use Sylius\Component\Core\Uploader\ImageUploaderInterface;
-// use Sylius\Component\Core\Model\ProductImage;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Sylius\Component\Product\Factory\ProductVariantFactoryInterface;
 use Sylius\Component\Core\Factory\ChannelPricingFactoryInterface;
@@ -183,9 +182,7 @@ class SyncProductCommand extends Command
             }
         }
         /** @var ProductImageInterface $productImage */
-        // $productImage = $this->productFactory->createNew('product_image'); // Use a factory method if available, or directly instantiate your custom ProductImage class
         $productImage = new ProductImage();
-        // Set the file on the product image
         $file = new UploadedFile($imagePath, basename($imagePath), null, true);
         $productImage->setFile($file);
         $productImage->setType('main');

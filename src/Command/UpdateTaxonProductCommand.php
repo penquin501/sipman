@@ -76,16 +76,14 @@ class UpdateTaxonProductCommand extends Command
                             $output->writeln('start with update taxon...' . $taxon->getCode());
                             $product->setMainTaxon($taxon);
 
-                            // $product->addTaxon($taxon);
                             $this->saveProductTaxon($product->getId(), $taxon->getId());
                         } else {
                             $output->writeln('<comment>No matching taxon found for slug ' . $slug . '</comment>');
                             continue;
                         }
                     }
-                    // $this->entityManager->persist($product);
-                    $this->entityManager->flush(); // Apply changes to the database
-                    // $this->entityManager->clear(); // Detach all objects from Doctrine
+                    
+                    $this->entityManager->flush();
                 } else {
                     $output->writeln('<comment>No wine found for product code ' . $product->getCode() . '</comment>');
                     continue;

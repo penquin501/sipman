@@ -82,13 +82,12 @@ class SyncProductController extends AbstractController
             if ($file) {
                 $originalFilename = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
                 $newFilename = $originalFilename.'-'.uniqid().'.'.$file->guessExtension();
-                $csvDirectory = $this->getParameter('csv_directory'); // Ensure this parameter is correctly defined in services.yaml
+                $csvDirectory = $this->getParameter('csv_directory');
 
                 try {
                     $filePath = $csvDirectory.'/'.$newFilename;
                     $file->move($csvDirectory, $newFilename);
 
-                    // $this->addFlash('success', 'File uploaded successfully!');
                     if (($handle = fopen($filePath, 'r')) !== false) {
                         // Skip the header row if your CSV file includes it
                         fgetcsv($handle);
@@ -247,7 +246,7 @@ class SyncProductController extends AbstractController
         try {
             $batchSize = 20; 
             $i = 0;
-            // $products = $this->productRepository->findBy(['code' => 'WIN-00078']); //debug
+            
             $products = $this->productRepository->findAll();
             foreach ($products as $product) {
                 $wine = $this->getWineByProductCode($product->getCode());

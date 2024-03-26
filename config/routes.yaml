@@ -7,6 +7,18 @@ app_admin_custom_page:
     defaults:
         _controller: App\Controller\Admin\SyncProductController::index
 
+admin_run_command:
+    path: /admin/runcommand
+    methods: [GET]
+    defaults:
+        _controller: App\Controller\Admin\RunCommandController::index
+
+admin_execute_command:
+    path: /admin/executecommand/{commandName}
+    methods: [GET]
+    defaults:
+        _controller: App\Controller\Admin\RunCommandController::executeCommand
+
 admin_sipman_sync_wine:
     path: /admin/sipman/sync-wine
     methods: [GET]

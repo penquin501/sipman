@@ -15,10 +15,16 @@ final class AdminMenuListener
             ->setLabel('Sipman Configuration')
         ;
 
+        // $newSubmenu    
+        //     ->addChild('new-subitem', ['route' => 'app_admin_custom_page'])
+        //     ->setLabel('Sync Product')
+        //     ->setLabelAttribute('icon', 'glass martini')
+        // ;
+
         $newSubmenu    
-            ->addChild('new-subitem', ['route' => 'app_admin_custom_page'])
-            ->setLabel('Sync Product')
-            ->setLabelAttribute('icon', 'glass martini');
+            ->addChild('new-subitem2', ['route' => 'admin_run_command'])
+            ->setLabel('Setup site')
+            ->setLabelAttribute('icon', 'trophy')
         ;
     }
 }

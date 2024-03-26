@@ -1,0 +1,156 @@
+
+{% extends '@SyliusAdmin/layout.html.twig' %}
+
+{% block content %}
+<style>
+    .commands-table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    .commands-table td, .commands-table th {
+        border: 1px solid #ddd;
+        padding: 8px;
+        vertical-align: middle;
+    }
+
+    .commands-table tr:nth-child(even){background-color: #f2f2f2;}
+
+    .commands-table th {
+        padding-top: 12px;
+        padding-bottom: 12px;
+        text-align: left;
+        background-color: #04AA6D;
+        color: white;
+    }
+
+    .command-action {
+        text-align: left;
+    }
+    
+    .alert {
+        padding: 15px;
+        margin-bottom: 20px;
+        border: 1px solid transparent;
+        border-radius: 4px;
+        position: fixed;
+        right: 20px;
+        top: 20px;
+        z-index: 1000;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    .alert-success {
+        color: #3c763d;
+        background-color: #dff0d8;
+        border-color: #d6e9c6;
+    }
+
+    .alert-danger {
+        color: #a94442;
+        background-color: #f2dede;
+        border-color: #ebccd1;
+    }
+</style>
+
+<h1>List Command for Sipman</h1>
+<p>Select command to setup</p>
+
+<div id="flash-messages"></div>
+
+<table class="commands-table">
+    <thead>
+        <tr>
+            <th>Command</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Remove all countries except Thailand</td>
+            <td class="command-action">
+                <a href="{{ path('admin_execute_command', {'commandName': 'remove-all-countries-except-thailand'}) }}" class="ui button primary">Remove All Countries Except TH</a>
+            </td>
+        </tr>
+        <tr>
+            <td>Remove all Customers</td>
+            <td class="command-action">
+                <a href="{{ path('admin_execute_command', {'commandName': 'remove-all-customers'}) }}" class="ui button primary">Remove All Customers</a>
+            </td>
+        </tr>
+        <tr>
+            <td>Remove all Products</td>
+            <td class="command-action">
+                <a href="{{ path('admin_execute_command', {'commandName': 'remove-all-products'}) }}" class="ui button primary">Remove All Products</a>
+            </td>
+        </tr>
+        <tr>
+            <td>Remove all Taxons</td>
+            <td class="command-action">
+                <a href="{{ path('admin_execute_command', {'commandName': 'remove-all-taxons'}) }}" class="ui button primary">Remove All Taxons</a>
+            </td>
+        </tr>
+        <tr>
+            <td>Remove Currencies</td>
+            <td class="command-action">
+                <a href="{{ path('admin_execute_command', {'commandName': 'remove-currencies'}) }}" class="ui button primary">Remove Currencies</a>
+            </td>
+        </tr>
+        <tr>
+            <td>Sync Sipman Products</td>
+            <td class="command-action">
+                <a href="{{ path('admin_execute_command', {'commandName': 'sync-product'}) }}" class="ui button primary">Sync Sipman Product</a>
+            </td>
+        </tr>
+        <tr>
+            <td>Create Taxons</td>
+            <td class="command-action">
+                <a href="{{ path('admin_execute_command', {'commandName': 'create-taxons'}) }}" class="ui button primary">Create Sipman Taxons</a>
+            </td>
+        </tr>
+        <tr>
+            <td>Update Product Taxon</td>
+            <td class="command-action">
+                <a href="{{ path('admin_execute_command', {'commandName': 'update-taxon-product'}) }}" class="ui button primary">Update Product Taxon</a>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+$(document).ready(function() {
+    $.ajax({
+        url: '/admin/taxon/create',
+        type: 'GET',
+        dataType: 'json',
+        success: function(response) {
+            // console.log(response); // Log the response to the console
+            // alert(response.message || 'Success!');
+            displayFlashMessage('success', response.message);
+        },
+        error: function(xhr, status, error) {
+            console.error('Error:', xhr.responseText);
+            // alert('Failed to get response.');
+            displayFlashMessage('error', 'Failed to get response.');
+        }
+    });
+});
+
+function displayFlashMessage(type, message) {
+    var flashMessages = $('#flash-messages');
+    var alertClass = type === 'error' ? 'alert-danger' : 'alert-success';
+    var html = '<div class="alert ' + alertClass + '">' + message + '</div>';
+
+    flashMessages.append(html).fadeIn();
+
+    setTimeout(function() {
+        flashMessages.fadeOut(function() {
+            $(this).empty();
+        });
+    }, 5000); // Message will disappear after 5 seconds
+}
+</script>
+
+{% endblock %}
+

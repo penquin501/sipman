@@ -89,15 +89,12 @@ class SyncProductController extends AbstractController
                     $file->move($csvDirectory, $newFilename);
 
                     if (($handle = fopen($filePath, 'r')) !== false) {
-                        // Skip the header row if your CSV file includes it
                         fgetcsv($handle);
                         
                         while (($data = fgetcsv($handle, 10000, ',')) !== false) {
                             $product = new Product();
-                            // Assuming the CSV columns match the Product entity properties
-                            $product->setName($data[0]); // Adjust the index based on your CSV structure
-                            $product->setPrice($data[1]); // Adjust as necessary
-                            // Set other properties...
+                            $product->setName($data[0]);
+                            $product->setPrice($data[1]);
 
                             $entityManager->persist($product);
                         }
@@ -112,7 +109,6 @@ class SyncProductController extends AbstractController
                     $this->addFlash('error', 'Failed to upload file.');
                 }
 
-                // Redirect to the same route after successful upload
                 return $this->redirectToRoute('app_admin_custom_page');
             }
         }

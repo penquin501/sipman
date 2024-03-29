@@ -1,0 +1,57 @@
+{% extends '@SyliusShop/layout.html.twig' %}
+
+{% block title %}{{ product.name }} | {{ parent() }}{% endblock %}
+
+{% block stylesheets %}
+{{ parent() }}
+<style>
+#main-image {
+    display: block;
+    width: 640px;
+    height: 480px;
+    object-fit: contain;
+}
+</style>
+{% endblock %}
+
+{% block content %}
+{% include '@SyliusShop/Product/Show/_breadcrumb.html.twig' %}
+<div class="ui hidden divider"></div>
+
+<div class="ui two column stackable grid">
+    <div class="column">
+        {{ sylius_template_event('sylius.shop.product.show.left_sidebar', _context) }}
+    </div>
+    <div class="column" {{ sylius_test_html_attribute('product-box') }}>
+        {{ sylius_template_event('sylius.shop.product.show.right_sidebar', _context) }}
+    </div>
+</div>
+
+<div class="ui basic segment">
+    <h3>Wine Information</h3>
+    <ul>
+        {% for wine in wineData %}
+            {# <li>Name: {{ wine.Name == ''? '-': wine.Name }}</li> #}
+            <li>Product: {{ wine.Product == ''? '-': wine.Product }}</li>
+            <li>Type: {{ wine.Type == ''? '-': wine.Type }}</li>
+            <li>Region: {{ wine.Region == ''? '-': wine.Region }}</li>
+            <li>Appellation: {{ wine.Appellation == ''? '-': wine.Appellation }}</li>
+            <li>Producer: {{ wine.Producer == ''? '-': wine.Producer }}</li>
+            <li>Vintage: {{ wine.Vintage == ''? '-': wine.Vintage }}</li>
+            <li>Grapes: {{ wine.Grapes == ''? '-': wine.Grapes }}</li>
+            <li>Alcohol: {{ wine.Alcohol == ''? '-': wine.Alcohol }}</li>
+        {% endfor %}
+    </ul>
+</div>
+{# {{ sylius_template_event('sylius.shop.product.show.content', _context) }} #}
+{% endblock %}
+
+{% block javascripts %}
+{{ parent() }}
+
+<script type="text/javascript">
+    lightbox.option({
+        'albumLabel': '{{ 'sylius.lightbox.image_album_label'|trans|escape('js') }}'
+    });
+</script>
+{% endblock %}

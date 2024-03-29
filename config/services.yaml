@@ -67,3 +67,7 @@ services:
     App\Command\SyncProductCommand:
         arguments:
             $imageDirectory: '%image_directory%'
+
+    App\Service\WineService:
+        arguments:
+            $connection: '@doctrine.dbal.default_connection'

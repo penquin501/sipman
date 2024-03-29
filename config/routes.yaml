@@ -36,3 +36,10 @@ admin_taxon_create:
     methods: [GET]
     defaults:
         _controller: App\Controller\Admin\TaxonController::createTaxon
+
+sylius_shop_product_show:
+    path: /{_locale}/products/{slug}
+    methods: [GET]
+    defaults:
+        _controller: App\Controller\ProductDetailController::showAction
+
